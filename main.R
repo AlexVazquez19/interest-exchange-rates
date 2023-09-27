@@ -16,7 +16,7 @@ setwd("/Users/alejandrovazquez/Desktop/econ121/interest-exchange-rates")
 
 
 
-## LOAD DATA
+## LOAD DATA ------------------------------------------------------------------
 
 # load federal funds rate data
 fedfunds <- read_csv("FEDFUNDS.csv")
@@ -30,7 +30,7 @@ UKUS <- read_csv("DEXUSUK.csv")
 
 
 
-## CLEAN/TRANSFORM DATA
+## CLEAN/TRANSFORM DATA --------------------------------------------------------
 
 # remove the dates where the exchange rate was not recorded (indicated by '.')
 CAUS <- subset(CAUS, CAUS$DEXCAUS!='.')
@@ -96,7 +96,7 @@ UKUS_monthly$min_max <- (UKUS_monthly$`MEAN DEXUSUK`-min(UKUS_monthly$`MEAN DEXU
 
 
 
-## FILTER DATA
+## FILTER DATA -----------------------------------------------------------------
 
 # filter fed funds dates to align with exchange rate dates
 fedfunds_ca <- fedfunds %>% filter(DATE >= as.Date("1971-01-01"))
@@ -114,7 +114,7 @@ UKUS_monthly <- UKUS_monthly %>% filter(month <= as.Date("2023-08-01"))
 
 
 
-## BOXPLOTS
+## BOXPLOTS --------------------------------------------------------------------
 
 # create boxplot for the exchange rate data to see if there are outliers.
 # no outliers means the min-max normalization will not magnify single points
@@ -128,7 +128,7 @@ boxplot(UKUS_monthly$`MEAN DEXUSUK`) # includes outliers
 
 
 
-## PEARSON CORRELATION
+## PEARSON CORRELATION ---------------------------------------------------------
 
 # Null hypothesis: the true correlation between the fed funds rate and exchange 
 # rate is zero.
@@ -165,7 +165,7 @@ COR_UKUSFF # medium positive correlation, statistically significant
 
 
 
-## SCATTER PLOTS
+## SCATTER PLOTS ---------------------------------------------------------------
 
 # visualize the fed funds rate vs the exchange rates to see if there is a trend
 
@@ -179,7 +179,7 @@ scatter.smooth(fedfunds_uk$FEDFUNDS,UKUS_monthly$`MEAN DEXUSUK`) # United Kingdo
 
 
 
-## LINEAR REGRESSIONS
+## LINEAR REGRESSIONS ----------------------------------------------------------
 
 # Canada
 model_ca <- lm(CAUS_monthly$`MEAN DEXCAUS` ~ fedfunds_ca$FEDFUNDS)
@@ -241,7 +241,7 @@ ggplot(fedfunds_uk, aes(x = fedfunds_uk$FEDFUNDS, y = UKUS_monthly$`MEAN DEXUSUK
 
 
 
-## RESIDUAL PLOTS
+## RESIDUAL PLOTS --------------------------------------------------------------
 
 # Check if the distribution of the residuals indicates homoscedasticity.
 
@@ -291,7 +291,7 @@ abline(0,0,col='orchid1')
 
 
 
-## Q-Q PLOTS
+## Q-Q PLOTS -------------------------------------------------------------------
 
 # Used to determine if residuals follow a normal distribution.
 
