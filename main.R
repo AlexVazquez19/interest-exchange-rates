@@ -243,36 +243,110 @@ ggplot(fedfunds_uk, aes(x = fedfunds_uk$FEDFUNDS, y = UKUS_monthly$`MEAN DEXUSUK
 
 ## RESIDUAL PLOTS
 
+# Check if the distribution of the residuals indicates homoscedasticity.
+
+# Canada
+residual_ca <- resid(model_ca)
+plot(fitted(model_ca), residual_ca)
+abline(0,0,col='orchid1')
+  # Because the residuals do not appear to be randomly and evenly distributed
+  # throughout the chart around the value zero, the homoscedasticity
+  # assumption may be violated.
+
+# Mexico
+residual_mx <- resid(model_mx)
+plot(fitted(model_mx), residual_mx)
+abline(0,0,col='orchid1')
+  # Once again the residuals do not appear to be randomly and evenly distributed
+  # throughout the chart around the value zero, meaning the homoscedasticity
+  # assumption may be violated.
+
+# China
+residual_ch <- resid(model_ch)
+plot(fitted(model_ch), residual_ch)
+abline(0,0,col='orchid1')
+  # The residuals do not appear to be randomly and evenly distributed
+  # throughout the chart around the value zero, which means the homoscedasticity
+  # assumption may be violated.
+
+# Japan
+residual_jp <- resid(model_jp)
+plot(fitted(model_jp), residual_jp)
+abline(0,0,col='orchid1')
+  # The residuals do not appear to be randomly and evenly distributed
+  # throughout the chart around the value zero, which means the homoscedasticity
+  # assumption may be violated.
+
+# United Kingdom
+residual_uk <- resid(model_uk)
+plot(fitted(model_uk), residual_uk)
+abline(0,0,col='orchid1')
+  # The residuals appear to be slightly more randomly and evenly distributed
+  # throughout the chart around the value zero compared to the previous charts,
+  # but there is still a slight pattern meaning the homoscedasticity
+  # assumption may be violated.
+
+# Conclusion: the homoscedasticity assumption seems to be violated for the
+# data of each country.
+
+
+
+## Q-Q PLOTS
+
+# Used to determine if residuals follow a normal distribution.
+
+# Canada
+qqnorm(residual_ca)
+qqline(residual_ca, col='dodgerblue')
+  # The slope of the Q-Q plot represents the ratio of the standard deviation of 
+  # the exchange rate data to the standard deviation of the normal distribution.
+  # Since the slope is greater than 1, the data is more spread out than the
+  # normal distribution. Additionally, the sloping tails indicate under-dispersed
+  # data.
+
+# Mexico
+qqnorm(residual_mx)
+qqline(residual_mx, col='dodgerblue')
+  # The slope of the Q-Q plot appears close to 1 and the points generally
+  # follow the line, indicating the data is relatively close to normal distribution.
+  # Although, the slight S shape may indicate a bimodal distribution in the
+  # original data.
+
+# China
+qqnorm(residual_ch)
+qqline(residual_ch, col='dodgerblue')
+  # Since the slope is greater than 1, the data is more spread out than the
+  # normal distribution. In addition, the S shape of the points indicates
+  # a bimodal distribution of data.
+
+# Japan
+qqnorm(residual_jp)
+qqline(residual_jp, col='dodgerblue')
+  # The concave shape in the Q-Q plot data points indicates that the data is 
+  # right-skewed. Running hist(JPUS_monthly$`MEAN DEXJPUS`) confirms this.
+
+# United Kingdom
+qqnorm(residual_uk)
+qqline(residual_uk, col='dodgerblue')
+  # The shape of the Q-Q plot points is slightly concave, but less so than the
+  # Japan Q-Q plot. This once again indicates the original data is right-skewed, 
+  # but less drastically than the data for Japan.
+
+# Conslusion: the residuals do not follow a normal distribution, meaning
+# we have violated the normality assumption for linear regression.
 
 
 
 
 
 
-
-
-
-
-#define residuals
-res <- resid(model)
-
-#produce residual vs. fitted plot
-plot(fitted(model), res)
-
-#add a horizontal line at 0 
-abline(0,0)
-
-#create Q-Q plot for residuals
-qqnorm(res)
-
-#add a straight diagonal line to the plot
-qqline(res) 
 
 # confounding variables
 # - inflation rate
 # - other country's interest rate
 # https://www.dallasfed.org/research/economics/2023/0926
 # https://stats.stackexchange.com/questions/207020/regression-with-skewed-data
+# https://www.ucd.ie/ecomodel/Resources/QQplots_WebVersion.html
 
 
 # ## FORECAST
