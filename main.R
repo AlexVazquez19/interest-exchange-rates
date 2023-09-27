@@ -8,8 +8,11 @@ library(dplyr)
 library(ggpubr)
 library(ggplot2)
 
-# clear environment
+# clear environment and set working directory
 rm(list = ls())
+
+# set working directory (edit to your directory)
+setwd("/Users/alejandrovazquez/Desktop/econ121/interest-exchange-rates")
 
 
 
@@ -166,13 +169,13 @@ COR_UKUSFF # medium positive correlation, statistically significant
 
 # visualize the fed funds rate vs the exchange rates to see if there is a trend
 
-scatter.smooth(fedfunds_ca$FEDFUNDS,CAUS_monthly$`MEAN DEXCAUS`)
-scatter.smooth(fedfunds_mx$FEDFUNDS,MXUS_monthly$`MEAN DEXMXUS`)
-scatter.smooth(fedfunds_ch$FEDFUNDS,CHUS_monthly$`MEAN DEXCHUS`)
-scatter.smooth(fedfunds_jp$FEDFUNDS,JPUS_monthly$`MEAN DEXJPUS`)
-scatter.smooth(fedfunds_uk$FEDFUNDS,UKUS_monthly$`MEAN DEXUSUK`)
+scatter.smooth(fedfunds_ca$FEDFUNDS,CAUS_monthly$`MEAN DEXCAUS`) # Canada
+scatter.smooth(fedfunds_mx$FEDFUNDS,MXUS_monthly$`MEAN DEXMXUS`) # Mexico
+scatter.smooth(fedfunds_ch$FEDFUNDS,CHUS_monthly$`MEAN DEXCHUS`) # China
+scatter.smooth(fedfunds_jp$FEDFUNDS,JPUS_monthly$`MEAN DEXJPUS`) # Japan
+scatter.smooth(fedfunds_uk$FEDFUNDS,UKUS_monthly$`MEAN DEXUSUK`) # United Kingdom
   # Japan and China have a slight linear relation but otherwise the data is 
-  # generally too scattered for it to be considered meaningful
+  # generally too scattered to gain any insight just by looking at it.
 
 
 
