@@ -16,7 +16,7 @@ setwd("/Users/alejandrovazquez/Desktop/econ121/interest-exchange-rates")
 
 
 
-## LOAD DATA ------------------------------------------------------------------
+## LOAD EXCHANGE RATE AND FED FUNDS RATE DATA ----------------------------------
 
 # load federal funds rate data
 fedfunds <- read_csv("FEDFUNDS.csv")
@@ -334,6 +334,31 @@ qqline(residual_uk, col='dodgerblue')
 
 # Conslusion: the residuals do not follow a normal distribution, meaning
 # we have violated the normality assumption for linear regression.
+
+
+
+## LOAD PRIME RATE DATA FOR OTHER COUNTRIES ----------------------------------
+
+# Canada (Bank of Canada) Prime Rate
+primerate_ca <- read_csv("bank_of_canada_prime_rate.csv")
+plot(primerate_ca$Date,primerate_ca$`Prime Rate`,type='l')
+
+# Mexico (Banco de Mexico) Prime Rate
+
+# China (People's Bank of China) Prime Rate
+
+# Japan (Bank of Japan) Prime Rate
+
+# United Kingdom (Bank of England) Prime Rate
+primerate_uk <- read_csv("bank_of_england_prime_rate.csv")
+primerate_uk$Date <- as.Date(primerate_uk$Date, format="%d-%m-%Y")
+primerate_uk$`Bank Rate` <- as.double(primerate_uk$`Bank Rate`)
+plot(primerate_uk$Date, primerate_uk$`Bank Rate`,type='l')
+
+
+
+
+
 
 
 
