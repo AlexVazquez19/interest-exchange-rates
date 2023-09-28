@@ -134,31 +134,36 @@ boxplot(UKUS_monthly$`MEAN DEXUSUK`) # includes outliers
 # rate is zero.
 
 # Canada
-COR_CAUSFF = cor.test(fedfunds_ca$FEDFUNDS, CAUS_monthly$`MEAN DEXCAUS`, method="pearson")
+COR_CAUSFF = cor.test(fedfunds_ca$FEDFUNDS, CAUS_monthly$`MEAN DEXCAUS`, 
+                      method="pearson")
 plot(fedfunds_ca$DATE, fedfunds_ca$min_max, type='l')
 lines(CAUS_monthly$month, CAUS_monthly$min_max, col='orange')
 COR_CAUSFF # not statistically significant
 
 # Mexico
-COR_MXUSFF = cor.test(fedfunds_mx$FEDFUNDS, MXUS_monthly$`MEAN DEXMXUS`, method="pearson")
+COR_MXUSFF = cor.test(fedfunds_mx$FEDFUNDS, MXUS_monthly$`MEAN DEXMXUS`, 
+                      method="pearson")
 plot(fedfunds$DATE, fedfunds$min_max, type='l')
 lines(MXUS_monthly$month, MXUS_monthly$min_max, col='orange')
 COR_MXUSFF # strong negative correlation, statistically significant
 
 # China
-COR_CHUSFF = cor.test(fedfunds_ch$FEDFUNDS, CHUS_monthly$`MEAN DEXCHUS`, method="pearson")
+COR_CHUSFF = cor.test(fedfunds_ch$FEDFUNDS, CHUS_monthly$`MEAN DEXCHUS`, 
+                      method="pearson")
 plot(fedfunds_ch$DATE, fedfunds_ch$min_max, type='l')
 lines(CHUS_monthly$month, CHUS_monthly$min_max, col='orange')
 COR_CHUSFF # strong negative correlation, statistically significant
 
 # Japan
-COR_JPUSFF = cor.test(fedfunds_jp$FEDFUNDS, JPUS_monthly$`MEAN DEXJPUS`, method="pearson")
+COR_JPUSFF = cor.test(fedfunds_jp$FEDFUNDS, JPUS_monthly$`MEAN DEXJPUS`, 
+                      method="pearson")
 plot(fedfunds_jp$DATE, fedfunds_jp$min_max, type='l')
 lines(JPUS_monthly$month, JPUS_monthly$min_max, col='orange')
 COR_JPUSFF # strong positive correlation, statistically significant
 
 # United Kingdom
-COR_UKUSFF = cor.test(fedfunds_uk$FEDFUNDS, UKUS_monthly$`MEAN DEXUSUK`, method="pearson")
+COR_UKUSFF = cor.test(fedfunds_uk$FEDFUNDS, UKUS_monthly$`MEAN DEXUSUK`, 
+                      method="pearson")
 plot(fedfunds_uk$DATE, fedfunds_uk$min_max, type='l')
 lines(UKUS_monthly$month, UKUS_monthly$min_max, col='orange')
 COR_UKUSFF # medium positive correlation, statistically significant
@@ -301,16 +306,16 @@ qqline(residual_ca, col='dodgerblue')
   # The slope of the Q-Q plot represents the ratio of the standard deviation of 
   # the exchange rate data to the standard deviation of the normal distribution.
   # Since the slope is greater than 1, the data is more spread out than the
-  # normal distribution. Additionally, the sloping tails indicate under-dispersed
-  # data.
+  # normal distribution. Additionally, the sloping tails indicate
+  # under-dispersed data.
 
 # Mexico
 qqnorm(residual_mx)
 qqline(residual_mx, col='dodgerblue')
   # The slope of the Q-Q plot appears close to 1 and the points generally
-  # follow the line, indicating the data is relatively close to normal distribution.
-  # Although, the slight S shape may indicate a bimodal distribution in the
-  # original data.
+  # follow the line, indicating the data is relatively close to normal
+  # distribution. Although, the slight S shape may indicate a bimodal 
+  # distribution in the original data.
 
 # China
 qqnorm(residual_ch)
@@ -337,7 +342,7 @@ qqline(residual_uk, col='dodgerblue')
 
 
 
-## LOAD PRIME RATE DATA FOR OTHER COUNTRIES ----------------------------------
+## LOAD PRIME RATE DATA FOR OTHER COUNTRIES ------------------------------------
 
 # Canada (Bank of Canada) Prime Rate
 primerate_ca <- read_csv("bank_of_canada_prime_rate.csv")
@@ -363,15 +368,18 @@ plot(primerate_uk$Date, primerate_uk$`Bank Rate`,type='l')
 
 
 
+## RESOURCES
+# https://www.dallasfed.org/research/economics/2023/0926
+# https://stats.stackexchange.com/questions/207020/regression-with-skewed-data
+# https://www.ucd.ie/ecomodel/Resources/QQplots_WebVersion.html
+
 
 
 
 # confounding variables
 # - inflation rate
 # - other country's interest rate
-# https://www.dallasfed.org/research/economics/2023/0926
-# https://stats.stackexchange.com/questions/207020/regression-with-skewed-data
-# https://www.ucd.ie/ecomodel/Resources/QQplots_WebVersion.html
+# - interest rate differential
 
 
 # ## FORECAST
